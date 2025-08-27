@@ -51,3 +51,4 @@ model_serving = ModelServing(
 model_serving.deploy_or_update_serving_endpoint(version=model_version)
 logger.info("Started deployment/update of the Marvel serving endpoint.")
 
+
