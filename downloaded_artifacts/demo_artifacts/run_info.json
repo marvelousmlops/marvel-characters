@@ -1,0 +1,41 @@
+{
+    "info": {
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/3837500115335923/bbf07cc406e14d8aa6aeccba585a8e6c/artifacts",
+        "end_time": 1752710219114,
+        "experiment_id": "3837500115335923",
+        "lifecycle_stage": "active",
+        "run_id": "bbf07cc406e14d8aa6aeccba585a8e6c",
+        "run_name": "marvel-demo-run",
+        "start_time": 1752710218386,
+        "status": "FINISHED",
+        "user_id": ""
+    },
+    "data": {
+        "metrics": {
+            "metric1": 1.0,
+            "metric2": 2.0
+        },
+        "params": {
+            "type": "marvel_demo"
+        },
+        "tags": {
+            "git_sha": "1234567890abcd",
+            "mlflow.databricks.cluster.id": "0716-232806-8b8yqouz-v2n",
+            "mlflow.databricks.cluster.info": "{\"cluster_name\":\"\",\"spark_version\":\"16.4.x-photon-scala2.12\",\"autotermination_minutes\":120}",
+            "mlflow.databricks.cluster.libraries": "{\"installable\":[],\"redacted\":[]}",
+            "mlflow.note.content": "marvel character prediction demo run",
+            "mlflow.runColor": "#479a5f",
+            "mlflow.runName": "marvel-demo-run",
+            "mlflow.source.name": "/Users/mariavechtomova/Marvelous/marvel-characters/.venv/lib/python3.12/site-packages/ipykernel_launcher.py",
+            "mlflow.source.type": "LOCAL",
+            "mlflow.user": "maria@marvelousmlops.io"
+        }
+    },
+    "inputs": {
+        "model_inputs": [],
+        "dataset_inputs": []
+    },
+    "outputs": {
+        "model_outputs": []
+    }
+}

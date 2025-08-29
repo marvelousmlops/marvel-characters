@@ -93,3 +93,5 @@ print(v[0].__dict__)
 # not supported
 v = mlflow.search_model_versions(
     filter_string="tags.git_sha='abcd12345'")
+
+# COMMAND ----------
