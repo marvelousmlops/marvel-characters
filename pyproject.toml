@@ -39,7 +39,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where =["src"]
-include = ["house_price*", "marvel_characters*"]
+include = ["marvel_characters*"]
 
 
 [tool.setuptools.dynamic]
