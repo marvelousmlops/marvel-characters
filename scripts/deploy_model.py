@@ -39,15 +39,15 @@ logger.info("Loaded config file.")
 catalog_name = config.catalog_name
 schema_name = config.schema_name
 endpoint_name = f"mlchapter-project01-model-serving-{args.env}"
-endpoint_name = "marvel-character-model-serving"
+endpoint_name = "mlchapter-character-model-serving"
 
-# Initialize Marvel Model Serving Manager
+# Initialize mlchapter Model Serving Manager
 model_serving = ModelServing(
-    model_name=f"{catalog_name}.{schema_name}.marvel_character_model_custom",
+    model_name=f"{catalog_name}.{schema_name}.mlchapter_character_model_custom",
     endpoint_name=endpoint_name
 )
 
-# Deploy the Marvel model serving endpoint
+# Deploy the mlchapter model serving endpoint
 model_serving.deploy_or_update_serving_endpoint(version=model_version)
-logger.info("Started deployment/update of the Marvel serving endpoint.")
+logger.info("Started deployment/update of the mlchapter serving endpoint.")
 

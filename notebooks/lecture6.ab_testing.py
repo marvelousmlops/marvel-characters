@@ -64,7 +64,7 @@ model_A_uri = f"models:/{basic_model_a.model_name}@latest-model"
 # Train model B (with different hyperparameters or features)
 basic_model_b = BasicModel(config=config, tags=tags, spark=spark)
 basic_model_b.parameters = {"learning_rate": 0.01, "n_estimators": 1000, "max_depth": 6}
-basic_model_b.model_name = f"{catalog_name}.{schema_name}.marvel_character_model_basic_B"
+basic_model_b.model_name = f"{catalog_name}.{schema_name}.mlchapter_project01_model_basic_B"
 basic_model_b.load_data()
 basic_model_b.prepare_features()
 basic_model_b.train()
@@ -104,7 +104,7 @@ X_test = test_set[config.num_features + config.cat_features + ["Id"]]
 
 # COMMAND ----------
 mlflow.set_experiment(experiment_name="/Shared/mlchapter-project01-ab-testing")
-model_name = f"{catalog_name}.{schema_name}.marvel_character_model_pyfunc_ab_test"
+model_name = f"{catalog_name}.{schema_name}.mlchapter_project01_model_pyfunc_ab_test"
 wrapped_model = MarvelModelWrapper()
 
 with mlflow.start_run() as run:

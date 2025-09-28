@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %pip install mlchapter_project01-1.0.1-py3-none-any.whl
+# MAGIC %pip install mlchapter_project01-0.1.0-py3-none-any.whl
 
 # COMMAND ----------
 # MAGIC %restart_python
@@ -45,7 +45,7 @@ schema_name = config.schema_name
 # COMMAND ----------
 # Initialize model serving
 model_serving = ModelServing(
-    model_name=f"{catalog_name}.{schema_name}.marvel_character_model_basic", endpoint_name="marvel-character-model-serving"
+    model_name=f"{catalog_name}.{schema_name}.mlchapter_project01_model_basic", endpoint_name="mlchapter-chapter01-model-serving"
 )
 
 # COMMAND ----------
@@ -101,7 +101,7 @@ def call_endpoint(record):
     """
     Calls the model serving endpoint with a given input record.
     """
-    serving_endpoint = f"{os.environ['DBR_HOST']}/serving-endpoints/marvel-character-model-serving/invocations"    
+    serving_endpoint = f"{os.environ['DBR_HOST']}/serving-endpoints/mlchapter-project01-model-serving/invocations"    
     print(f"Calling endpoint: {serving_endpoint}")
     
     response = requests.post(

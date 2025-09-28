@@ -16,7 +16,7 @@ def adjust_predictions(predictions: np.ndarray | list[int]) -> dict[str, list[st
     return {"Survival prediction": ["alive" if pred == 1 else "dead" for pred in predictions]}
 
 
-class MarvelModelWrapper(mlflow.pyfunc.PythonModel):
+class mlchapterModelWrapper(mlflow.pyfunc.PythonModel):
     """Wrapper for LightGBM model."""
 
     def load_context(self, context: PythonModelContext) -> None:

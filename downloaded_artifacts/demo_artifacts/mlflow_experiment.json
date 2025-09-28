@@ -1,0 +1,15 @@
+{
+    "_experiment_id": "3017413870021331",
+    "_name": "/Shared/mlchapter-project01-demo",
+    "_artifact_location": "dbfs:/databricks/mlflow-tracking/3017413870021331",
+    "_lifecycle_stage": "active",
+    "_tags": {
+        "mlflow.ownerId": "2576919589898178",
+        "repository_name": "mlschoolmlops/mlchapter-project01",
+        "mlflow.experiment.sourceName": "/Shared/mlchapter-project01-demo",
+        "mlflow.ownerEmail": "hellodata710@gmail.com",
+        "mlflow.experimentType": "MLFLOW_EXPERIMENT"
+    },
+    "_creation_time": 1758980230743,
+    "_last_update_time": 1758980300533
+}

@@ -169,9 +169,9 @@ mlflow.artifacts.download_artifacts(
 
 # COMMAND ----------
 # nested runs: useful for hyperparameter tuning
-with mlflow.start_run(run_name="marvel_top_level_run") as run:
+with mlflow.start_run(run_name="mlchapter_top_level_run") as run:
     for i in range(1,5):
-        with mlflow.start_run(run_name=f"marvel_subrun_{str(i)}", nested=True) as subrun:
+        with mlflow.start_run(run_name=f"mlchapter_subrun_{str(i)}", nested=True) as subrun:
             mlflow.log_metrics({"m1": 5.1+i,
                                 "m2": 2*i,
                                 "m3": 3+1.5*i})

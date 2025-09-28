@@ -8,7 +8,7 @@ from importlib.metadata import version
 
 from mlchapter_project01.config import ProjectConfig, Tags
 from mlchapter_project01.models.basic_model import BasicModel
-from mlchapter_project01.models.custom_model import MarvelModelWrapper
+from mlchapter_project01.models.custom_model import mlchapterModelWrapper
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -40,37 +40,37 @@ dbutils = DBUtils(spark)
 tags_dict = {"git_sha": args.git_sha, "branch": args.branch, "job_run_id": args.job_run_id}
 tags = Tags(**tags_dict)
 
-# Initialize Marvel custom model
+# Initialize mlchapter custom model
 basic_model = BasicModel(config=config, tags=tags, spark=spark)
-logger.info("Marvel BasicModel initialized.")
+logger.info("mlchapter BasicModel initialized.")
 
 # Load Marvel data
 basic_model.load_data()
-logger.info("Marvel data loaded.")
+logger.info("mlchapter data loaded.")
 
 # Prepare features
 basic_model.prepare_features()
 
-# Train the Marvel model
+# Train the mlchapter model
 basic_model.train()
-logger.info("Marvel model training completed.")
+logger.info("mlchapter model training completed.")
 
-# Train the Marvel model
+# Train the mlchapter model
 basic_model.log_model()
 
-# Evaluate Marvel model
+# Evaluate mlchapter model
 model_improved = basic_model.model_improved()
-logger.info("Marvel model evaluation completed, model improved: %s", model_improved)
+logger.info("mlchapter model evaluation completed, model improved: %s", model_improved)
 
 if model_improved:
     # Register the model
     basic_model.register_model()
     mlchapter_project01_v = version("mlchapter_project01")
 
-    pyfunc_model_name = f"{config.catalog_name}.{config.schema_name}.marvel_character_model_custom"
+    pyfunc_model_name = f"{config.catalog_name}.{config.schema_name}.mlchapter_character_model_custom"
     code_paths=[f"{root_path}/artifacts/.internal/mlchapter_project01-{mlchapter_project01_v}-py3-none-any.whl"]
 
-    wrapper = MarvelModelWrapper()
+    wrapper = mlchapterModelWrapper()
     latest_version = wrapper.log_register_model(wrapped_model_uri=f"{basic_model.model_info.model_uri}",
                             pyfunc_model_name=pyfunc_model_name,
                             experiment_name=config.experiment_name_custom,

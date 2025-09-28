@@ -7,7 +7,7 @@ import mlflow
 from pyspark.sql import SparkSession
 
 from mlchapter_project01.config import ProjectConfig, Tags
-from mlchapter_project01.models.custom_model import MarvelModelWrapper
+from mlchapter_project01.models.custom_model import mlchapterModelWrapper
 from importlib.metadata import version
 from dotenv import load_dotenv
 from mlflow import MlflowClient
@@ -47,8 +47,8 @@ test_set = spark.table(f"{config.catalog_name}.{config.schema_name}.test_set").t
 X_test = test_set[config.num_features + config.cat_features]
 
 # COMMAND ----------
-pyfunc_model_name = f"{config.catalog_name}.{config.schema_name}.marvel_character_model_custom"
-wrapper = MarvelModelWrapper()
+pyfunc_model_name = f"{config.catalog_name}.{config.schema_name}.mlchapter_project01_model_custom"
+wrapper = mlchapterModelWrapper()
 wrapper.log_register_model(wrapped_model_uri=f"models:/{wrapped_model_version.model_id}",
                            pyfunc_model_name=pyfunc_model_name,
                            experiment_name=config.experiment_name_custom,

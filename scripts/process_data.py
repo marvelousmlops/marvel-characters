@@ -36,15 +36,15 @@ logger.info(yaml.dump(config, default_flow_style=False))
 # Load the mlchapter project01 dataset
 spark = SparkSession.builder.getOrCreate()
 
-# Example: Adjust the path and loading logic as per your Marvel dataset location
+# Example: Adjust the path and loading logic as per your mlchapter dataset location
 filepath = f"{args.root_path}/files/data/mlchapter_project01_dataset.csv"
 
 # Load the data
 df = pd.read_csv(filepath)
 
-# If you have Marvel-specific synthetic/test data generation, use them here.
-# Otherwise, just use the loaded Marvel dataset as is.
-logger.info("Marvel data loaded for processing.")
+# If you have mlchapter-specific synthetic/test data generation, use them here.
+# Otherwise, just use the loaded mlchapter dataset as is.
+logger.info("mlchapter data loaded for processing.")
 
 # Initialize DataProcessor
 data_processor = DataProcessor(df, config, spark)

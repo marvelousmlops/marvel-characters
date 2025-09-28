@@ -1,0 +1,41 @@
+{
+    "info": {
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/3017413870021331/ea7aa9ae41794ce3963f49379f7db7ee/artifacts",
+        "end_time": 1758983326171,
+        "experiment_id": "3017413870021331",
+        "lifecycle_stage": "active",
+        "run_id": "ea7aa9ae41794ce3963f49379f7db7ee",
+        "run_name": "mlchapter-project01-demo-run",
+        "start_time": 1758983324521,
+        "status": "FINISHED",
+        "user_id": ""
+    },
+    "data": {
+        "metrics": {
+            "metric1": 1.0,
+            "metric2": 2.0
+        },
+        "params": {
+            "type": "mlchapter_demo"
+        },
+        "tags": {
+            "git_sha": "1234567890abcd",
+            "mlflow.databricks.cluster.id": "0927-142739-flv4fhgy-v2n",
+            "mlflow.databricks.cluster.info": "{\"cluster_name\":\"\",\"spark_version\":\"17.1.x-photon-scala2.13\",\"autotermination_minutes\":120}",
+            "mlflow.databricks.cluster.libraries": "{\"installable\":[],\"redacted\":[]}",
+            "mlflow.note.content": "mlchapter project01 prediction demo run",
+            "mlflow.runColor": "#7d54b2",
+            "mlflow.runName": "mlchapter-project01-demo-run",
+            "mlflow.source.name": "c:\\Users\\ajays\\OneDrive\\Documents\\GitHub\\mlchapter-project01\\.venv\\Lib\\site-packages\\ipykernel_launcher.py",
+            "mlflow.source.type": "LOCAL",
+            "mlflow.user": "hellodata710@gmail.com"
+        }
+    },
+    "inputs": {
+        "model_inputs": [],
+        "dataset_inputs": []
+    },
+    "outputs": {
+        "model_outputs": []
+    }
+}

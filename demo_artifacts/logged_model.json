@@ -1,154 +1,154 @@
 {
-    "artifact_location": "dbfs:/databricks/mlflow-tracking/3792532061806037/logged_models/m-cae53dced8654236985eddc6b0cb4c39/artifacts",
-    "creation_timestamp": 1758982043445,
+    "artifact_location": "dbfs:/databricks/mlflow-tracking/3792532061806037/logged_models/m-4d8ac98ae2a241cc9094212dafd83d83/artifacts",
+    "creation_timestamp": 1758983584663,
     "experiment_id": "3792532061806037",
-    "last_updated_timestamp": 1758982065222,
+    "last_updated_timestamp": 1758983606141,
     "metrics": [
         {
             "_key": "score",
             "_value": 0.7650172860847018,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "true_negatives",
             "_value": 378.0,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "false_positives",
             "_value": 4184.0,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "false_negatives",
             "_value": 166.0,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "true_positives",
             "_value": 13784.0,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "example_count",
             "_value": 18512.0,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "accuracy_score",
             "_value": 0.7650172860847018,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "recall_score",
             "_value": 0.9881003584229391,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "precision_score",
             "_value": 0.7671415850400712,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "f1_score",
             "_value": 0.8637132652421831,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "log_loss",
             "_value": 0.5082923607513762,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "roc_auc",
             "_value": 0.6992098589092691,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         },
         {
             "_key": "precision_recall_auc",
             "_value": 0.8743929477866188,
-            "_timestamp": 1758982085906,
+            "_timestamp": 1758983627806,
             "_step": 0,
-            "_model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+            "_model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
             "_dataset_name": "dataset",
             "_dataset_digest": "daaa439d",
-            "_run_id": "143734bb5047478d8deb19156f9d18c8"
+            "_run_id": "48f8127f10854fb7a0b97cc514c04427"
         }
     ],
-    "model_id": "m-cae53dced8654236985eddc6b0cb4c39",
+    "model_id": "m-4d8ac98ae2a241cc9094212dafd83d83",
     "model_type": "",
     "name": "lightgbm-pipeline-model",
     "params": {},
-    "source_run_id": "143734bb5047478d8deb19156f9d18c8",
+    "source_run_id": "48f8127f10854fb7a0b97cc514c04427",
     "status": 2,
     "status_message": "",
     "tags": {
-        "mlflow.databricks.cluster.id": "0927-133308-42j0jut-v2n",
-        "mlflow.loggedModel.artifactLocation": "dbfs:/databricks/mlflow-tracking/3792532061806037/logged_models/m-cae53dced8654236985eddc6b0cb4c39/artifacts",
+        "mlflow.databricks.cluster.id": "0927-142739-flv4fhgy-v2n",
+        "mlflow.loggedModel.artifactLocation": "dbfs:/databricks/mlflow-tracking/3792532061806037/logged_models/m-4d8ac98ae2a241cc9094212dafd83d83/artifacts",
         "mlflow.loggedModel.name": "lightgbm-pipeline-model",
         "mlflow.source.name": "c:\\Users\\ajays\\OneDrive\\Documents\\GitHub\\mlchapter-project01\\.venv\\Lib\\site-packages\\ipykernel_launcher.py",
         "mlflow.source.type": "LOCAL",
-        "mlflow.artifacts.spn": "/WorkspaceInternal/Mlflow/Artifacts/3792532061806037/LoggedModels/m-cae53dced8654236985eddc6b0cb4c39/",
+        "mlflow.artifacts.spn": "/WorkspaceInternal/Mlflow/Artifacts/3792532061806037/LoggedModels/m-4d8ac98ae2a241cc9094212dafd83d83/",
         "mlflow.user": "hellodata710@gmail.com"
     }
 }
