@@ -48,7 +48,7 @@ class BasicModel:
         self.catalog_name = self.config.catalog_name
         self.schema_name = self.config.schema_name
         self.experiment_name = self.config.experiment_name_basic
-        self.model_name = f"{self.catalog_name}.{self.schema_name}.mlchapter_character_model_basic"
+        self.model_name = f"{self.catalog_name}.{self.schema_name}.mlchapter_project01_model_basic"
         self.tags = tags.to_dict()
 
     def load_data(self) -> None:

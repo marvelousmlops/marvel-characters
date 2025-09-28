@@ -32,3 +32,4 @@ It is used to build classification and feature engineering models for various ML
 updated code in notebooks\lecture6.deploy_model_serving_endpoint.py to use the basic model instead of custom as custom was giving some error.
 done changes in data_processor.py to fix error in job 
 To run the DAB job .. command - databricks bundle run deployment instead of databricks bundle run
+change in Lecture 6 file change to 	MAGIC %pip install mlchapter_project01-0.1.0-py3-none-any.whl	

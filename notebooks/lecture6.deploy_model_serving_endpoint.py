@@ -101,7 +101,7 @@ def call_endpoint(record):
     """
     Calls the model serving endpoint with a given input record.
     """
-    serving_endpoint = f"{os.environ['DBR_HOST']}/serving-endpoints/mlchapter-project01-model-serving/invocations"    
+    serving_endpoint = f"{os.environ['DBR_HOST']}/serving-endpoints/mlchapter-chapter01-model-serving/invocations"    
     print(f"Calling endpoint: {serving_endpoint}")
     
     response = requests.post(
