@@ -2,7 +2,7 @@ prd:
   catalog_name: mlops_prd
   schema_name: marvel_characters
 acc:
-  catalog_name: mlops_acc
+  catalog_name: mlops_test
   schema_name: marvel_characters
 dev:
   catalog_name: mlops_dev

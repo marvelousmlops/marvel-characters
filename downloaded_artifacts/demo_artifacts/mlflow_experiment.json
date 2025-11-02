@@ -1,0 +1,16 @@
+{
+    "_experiment_id": "3043573107786381",
+    "_name": "/Shared/marvel-demo",
+    "_artifact_location": "dbfs:/databricks/mlflow-tracking/3043573107786381",
+    "_lifecycle_stage": "active",
+    "_tags": {
+        "mlflow.experimentKind": "custom_model_development",
+        "mlflow.ownerId": "72044795917268",
+        "repository_name": "marvelousmlops/marvel-characters",
+        "mlflow.experiment.sourceName": "/Shared/marvel-demo",
+        "mlflow.ownerEmail": "sagarsean007@gmail.com",
+        "mlflow.experimentType": "MLFLOW_EXPERIMENT"
+    },
+    "_creation_time": 1761528737171,
+    "_last_update_time": 1761528928468
+}

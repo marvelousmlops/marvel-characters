@@ -42,7 +42,7 @@ schema_name = config.schema_name
 # COMMAND ----------
 # Initialize model serving
 model_serving = ModelServing(
-    model_name=f"{catalog_name}.{schema_name}.marvel_character_model_custom", endpoint_name="marvel-character-model-serving"
+    model_name=f"{catalog_name}.{schema_name}.marvel_character_model_basic", endpoint_name="marvel-character-basic-model-serving"
 )
 
 # COMMAND ----------
@@ -69,7 +69,7 @@ required_columns = [
 test_set = spark.table(f"{config.catalog_name}.{config.schema_name}.test_set").toPandas()
 
 # Sample records from the training set
-sampled_records = test_set[required_columns].sample(n=18000, replace=True)
+sampled_records = test_set[required_columns].sample(n=100, replace=True)
 
 # Replace NaN values with None (which will be serialized as null in JSON)
 import numpy as np
@@ -98,7 +98,7 @@ def call_endpoint(record):
     """
     Calls the model serving endpoint with a given input record.
     """
-    serving_endpoint = f"{os.environ['DBR_HOST']}/serving-endpoints/marvel-character-model-serving/invocations"    
+    serving_endpoint = f"{os.environ['DBR_HOST']}/serving-endpoints/marvel-character-basic-model-serving/invocations"    
     print(f"Calling endpoint: {serving_endpoint}")
     
     response = requests.post(

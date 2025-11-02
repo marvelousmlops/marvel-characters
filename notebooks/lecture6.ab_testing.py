@@ -148,7 +148,7 @@ workspace.serving_endpoints.create(
 
 # COMMAND ----------
 # Create sample request body
-sampled_records = train_set[config.num_features + config.cat_features + ["Id"]].sample(n=1000, replace=True)
+sampled_records = train_set[config.num_features + config.cat_features + ["Id"]].sample(n=100, replace=True)
 
 import numpy as np
 sampled_records = sampled_records.replace({np.nan: None}).to_dict(orient="records")

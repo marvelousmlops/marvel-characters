@@ -1,12 +1,12 @@
 {
     "info": {
-        "artifact_uri": "dbfs:/databricks/mlflow-tracking/3837500115335923/bbf07cc406e14d8aa6aeccba585a8e6c/artifacts",
-        "end_time": 1752710219114,
-        "experiment_id": "3837500115335923",
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/3043573107786381/39825a4923354a02bc33a9a04bbac57a/artifacts",
+        "end_time": 1761529433612,
+        "experiment_id": "3043573107786381",
         "lifecycle_stage": "active",
-        "run_id": "bbf07cc406e14d8aa6aeccba585a8e6c",
+        "run_id": "39825a4923354a02bc33a9a04bbac57a",
         "run_name": "marvel-demo-run",
-        "start_time": 1752710218386,
+        "start_time": 1761529432907,
         "status": "FINISHED",
         "user_id": ""
     },
@@ -20,15 +20,16 @@
         },
         "tags": {
             "git_sha": "1234567890abcd",
-            "mlflow.databricks.cluster.id": "0716-232806-8b8yqouz-v2n",
-            "mlflow.databricks.cluster.info": "{\"cluster_name\":\"\",\"spark_version\":\"16.4.x-photon-scala2.12\",\"autotermination_minutes\":120}",
+            "mlflow.databricks.cluster.id": "1027-012048-bwxcyqz6-v2n",
+            "mlflow.databricks.cluster.info": "{\"cluster_name\":\"\",\"spark_version\":\"17.2.x-photon-scala2.13\",\"autotermination_minutes\":120}",
             "mlflow.databricks.cluster.libraries": "{\"installable\":[],\"redacted\":[]}",
             "mlflow.note.content": "marvel character prediction demo run",
             "mlflow.runColor": "#479a5f",
             "mlflow.runName": "marvel-demo-run",
-            "mlflow.source.name": "/Users/mariavechtomova/Marvelous/marvel-characters/.venv/lib/python3.12/site-packages/ipykernel_launcher.py",
+            "mlflow.source.name": "c:\\Users\\jahan\\Documents\\workspace\\mlops\\marvel-characters-mlops\\.venv\\Lib\\site-packages\\ipykernel_launcher.py",
             "mlflow.source.type": "LOCAL",
-            "mlflow.user": "maria@marvelousmlops.io"
+            "mlflow.user": "sagarsean007@gmail.com",
+            "mlflow.artifacts.spn": "/WorkspaceInternal/Mlflow/Artifacts/3043573107786381/Runs/39825a4923354a02bc33a9a04bbac57a/"
         }
     },
     "inputs": {

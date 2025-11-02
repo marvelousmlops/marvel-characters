@@ -27,27 +27,27 @@ targets:
     default: true
     mode: development
     workspace:
-      host: <your host>
+      host: https://dbc-15cca115-1d11.cloud.databricks.com/
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.target}/${bundle.name}
-      profile: marvelous
+      profile: sagarsean007@gmail.com
     variables:
       schedule_pause_status: PAUSED
 
   acc:
     presets:
-      name_prefix: 'acc_'
+      name_prefix: 'test_'
     workspace:
-      host: <your host>
+      host: https://dbc-15cca115-1d11.cloud.databricks.com/
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
-      profile: marvelous
+      profile: sagarsean007@gmail.com
     variables:
       schedule_pause_status: PAUSED
 
   prd:
     mode: production
     workspace:
-      host: <your host>
+      host: https://dbc-15cca115-1d11.cloud.databricks.com/
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
-      profile: marvelous
+      profile: sagarsean007@gmail.com
     variables:
       schedule_pause_status: PAUSED # normally UNPAUSED
