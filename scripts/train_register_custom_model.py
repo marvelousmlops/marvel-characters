@@ -1,6 +1,5 @@
 import argparse
 
-import mlflow
 from loguru import logger
 from pyspark.dbutils import DBUtils
 from pyspark.sql import SparkSession
@@ -84,3 +83,4 @@ if model_improved:
 
 else:
     dbutils.jobs.taskValues.set(key="model_updated", value=0)
+
