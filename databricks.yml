@@ -2,8 +2,7 @@ bundle:
   name: marvel-characters
 
 include:
-  # - resources/*
-  - resources/model_deployment.yml
+  - resources/*
 
 artifacts:
   default:
@@ -28,9 +27,9 @@ targets:
     default: true
     mode: development
     workspace:
-      host: https://dbc-e2c50844-7e34.cloud.databricks.com
+      host: <your host>
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.target}/${bundle.name}
-      profile: dbc-e2c50844-7e34
+      profile: marvelous
     variables:
       schedule_pause_status: PAUSED
 
@@ -38,7 +37,7 @@ targets:
     presets:
       name_prefix: 'acc_'
     workspace:
-      host: https://dbc-e2c50844-7e34.cloud.databricks.com
+      host: <your host>
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
       profile: marvelous
     variables:
@@ -47,7 +46,7 @@ targets:
   prd:
     mode: production
     workspace:
-      host: https://dbc-e2c50844-7e34.cloud.databricks.com
+      host: <your host>
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
       profile: marvelous
     variables:
