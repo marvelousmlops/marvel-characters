@@ -27,7 +27,7 @@ targets:
     default: true
     mode: development
     workspace:
-      host: <your host>
+      host: https://dbc-75b6de41-1fe5.cloud.databricks.com/
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.target}/${bundle.name}
     variables:
       schedule_pause_status: PAUSED
@@ -36,7 +36,7 @@ targets:
     presets:
       name_prefix: 'acc_'
     workspace:
-      host: <your host>
+      host: https://dbc-75b6de41-1fe5.cloud.databricks.com/
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       schedule_pause_status: PAUSED
@@ -44,7 +44,7 @@ targets:
   prd:
     mode: production
     workspace:
-      host: <your host>
+      host: https://dbc-75b6de41-1fe5.cloud.databricks.com/
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       schedule_pause_status: PAUSED # normally UNPAUSED
