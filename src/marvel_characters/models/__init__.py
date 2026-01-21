@@ -1,1 +1,1 @@
-"""Marvel characters models package."""
+"""Marvel characters models package updated."""
