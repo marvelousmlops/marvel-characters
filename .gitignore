@@ -98,3 +98,6 @@ mlruns/
 # Environment variables
 .env
 logs*
+
+# Databricks config
+databricks.yml

@@ -110,7 +110,7 @@ mlflow.log_metric(key="metric3", value=3.0)
 # dynamically log metric (trainings epochs)
 for i in range(0,3):
     mlflow.log_metric(key="metric1", value=3.0+i/2, step=i)
-mlflow.log_artifact("../demo_artifacts/mlflow_meme.jpeg")
+mlflow.log_artifact("../demo_artifacts/mlflow_meme-1.jpeg")
 mlflow.log_text("hello, MLflow!", "hello.txt")
 mlflow.log_dict({"k": "v"}, "dict_example.json")
 mlflow.log_artifacts("../demo_artifacts", artifact_path="demo_artifacts")

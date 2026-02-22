@@ -1,0 +1,42 @@
+{
+    "info": {
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/694300568866837/7e6c9d90ca0044e0aa86751161c6f87e/artifacts",
+        "end_time": 1771724142957,
+        "experiment_id": "694300568866837",
+        "lifecycle_stage": "active",
+        "run_id": "7e6c9d90ca0044e0aa86751161c6f87e",
+        "run_name": "marvel-demo-run",
+        "start_time": 1771724142229,
+        "status": "FINISHED",
+        "user_id": ""
+    },
+    "data": {
+        "metrics": {
+            "metric1": 1.0,
+            "metric2": 2.0
+        },
+        "params": {
+            "type": "marvel_demo"
+        },
+        "tags": {
+            "git_sha": "1234567890abcd",
+            "mlflow.databricks.cluster.id": "0222-012750-wyyty41i-v2n",
+            "mlflow.databricks.cluster.info": "{\"cluster_name\":\"\",\"spark_version\":\"18.0.x-photon-scala2.13\",\"autotermination_minutes\":120}",
+            "mlflow.databricks.cluster.libraries": "{\"installable\":[],\"redacted\":[]}",
+            "mlflow.note.content": "marvel character prediction demo run",
+            "mlflow.runColor": "#da4c4c",
+            "mlflow.runName": "marvel-demo-run",
+            "mlflow.source.name": "d:\\mlops\\marvel-characters\\.venv\\Lib\\site-packages\\ipykernel_launcher.py",
+            "mlflow.source.type": "LOCAL",
+            "mlflow.user": "sxj6194@mavs.uta.edu",
+            "mlflow.artifacts.spn": "/WorkspaceInternal/Mlflow/Artifacts/694300568866837/Runs/7e6c9d90ca0044e0aa86751161c6f87e/"
+        }
+    },
+    "inputs": {
+        "model_inputs": [],
+        "dataset_inputs": []
+    },
+    "outputs": {
+        "model_outputs": []
+    }
+}
