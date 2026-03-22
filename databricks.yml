@@ -14,9 +14,12 @@ variables:
   git_sha:
     description: git_sha
     default: abcd
+  environment_version:
+    description: databricks serverless environment version
+    default: "2"
   branch:
     description: branch
-    default: main
+    default: dev
   schedule_pause_status:
     description: schedule pause status
     default: PAUSED
@@ -27,7 +30,7 @@ targets:
     default: true
     mode: development
     workspace:
-      host: <your host>
+      host: https://dbc-f9075b16-9688.cloud.databricks.com
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.target}/${bundle.name}
     variables:
       schedule_pause_status: PAUSED
@@ -36,7 +39,7 @@ targets:
     presets:
       name_prefix: 'acc_'
     workspace:
-      host: <your host>
+      host: https://dbc-f9075b16-9688.cloud.databricks.com
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       schedule_pause_status: PAUSED
@@ -44,7 +47,7 @@ targets:
   prd:
     mode: production
     workspace:
-      host: <your host>
+      host: https://dbc-f9075b16-9688.cloud.databricks.com
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       schedule_pause_status: PAUSED # normally UNPAUSED
