@@ -1,12 +1,12 @@
 {
     "info": {
-        "artifact_uri": "dbfs:/databricks/mlflow-tracking/3837500115335923/bbf07cc406e14d8aa6aeccba585a8e6c/artifacts",
-        "end_time": 1752710219114,
-        "experiment_id": "3837500115335923",
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/3997068796441299/68afde1fda684070842aa99150fa3b89/artifacts",
+        "end_time": 1763706051461,
+        "experiment_id": "3997068796441299",
         "lifecycle_stage": "active",
-        "run_id": "bbf07cc406e14d8aa6aeccba585a8e6c",
+        "run_id": "68afde1fda684070842aa99150fa3b89",
         "run_name": "marvel-demo-run",
-        "start_time": 1752710218386,
+        "start_time": 1763705955405,
         "status": "FINISHED",
         "user_id": ""
     },
@@ -20,15 +20,16 @@
         },
         "tags": {
             "git_sha": "1234567890abcd",
-            "mlflow.databricks.cluster.id": "0716-232806-8b8yqouz-v2n",
-            "mlflow.databricks.cluster.info": "{\"cluster_name\":\"\",\"spark_version\":\"16.4.x-photon-scala2.12\",\"autotermination_minutes\":120}",
+            "mlflow.databricks.cluster.id": "1121-060652-xphey0rr-v2n",
+            "mlflow.databricks.cluster.info": "{\"cluster_name\":\"\",\"spark_version\":\"17.2.x-photon-scala2.13\",\"autotermination_minutes\":120}",
             "mlflow.databricks.cluster.libraries": "{\"installable\":[],\"redacted\":[]}",
             "mlflow.note.content": "marvel character prediction demo run",
-            "mlflow.runColor": "#479a5f",
+            "mlflow.runColor": "#da4c4c",
             "mlflow.runName": "marvel-demo-run",
-            "mlflow.source.name": "/Users/mariavechtomova/Marvelous/marvel-characters/.venv/lib/python3.12/site-packages/ipykernel_launcher.py",
+            "mlflow.source.name": "c:\\Users\\uday_nagisetti\\Desktop\\uday\\practice\\marvel-characters\\.venv\\Lib\\site-packages\\ipykernel_launcher.py",
             "mlflow.source.type": "LOCAL",
-            "mlflow.user": "maria@marvelousmlops.io"
+            "mlflow.user": "udays2797@gmail.com",
+            "mlflow.artifacts.spn": "/WorkspaceInternal/Mlflow/Artifacts/3997068796441299/Runs/68afde1fda684070842aa99150fa3b89/"
         }
     },
     "inputs": {
