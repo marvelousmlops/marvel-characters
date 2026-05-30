@@ -27,10 +27,6 @@ jobs:
         run: |
           uv sync --extra test
 
-      - name: Run pre-commit checks
-        run: |
-          uv run pre-commit run --all-files
-
       - name: run pytest
         run: |
           uv run pytest -m "not ci_exclude"

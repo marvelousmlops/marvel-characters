@@ -5,6 +5,7 @@ __pycache__/
 *$py.class
 .databricks/*
 .ruff_cache/*
+.idea/
 # C extensions
 *.so
 
