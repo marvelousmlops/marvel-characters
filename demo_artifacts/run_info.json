@@ -1,12 +1,12 @@
 {
     "info": {
-        "artifact_uri": "dbfs:/databricks/mlflow-tracking/3837500115335923/bbf07cc406e14d8aa6aeccba585a8e6c/artifacts",
-        "end_time": 1752710219114,
-        "experiment_id": "3837500115335923",
+        "artifact_uri": "dbfs:/databricks/mlflow-tracking/986598991196488/60abdda8b844474692533151b74b4284/artifacts",
+        "end_time": 1784357231579,
+        "experiment_id": "986598991196488",
         "lifecycle_stage": "active",
-        "run_id": "bbf07cc406e14d8aa6aeccba585a8e6c",
+        "run_id": "60abdda8b844474692533151b74b4284",
         "run_name": "marvel-demo-run",
-        "start_time": 1752710218386,
+        "start_time": 1784357230185,
         "status": "FINISHED",
         "user_id": ""
     },
@@ -20,15 +20,16 @@
         },
         "tags": {
             "git_sha": "1234567890abcd",
-            "mlflow.databricks.cluster.id": "0716-232806-8b8yqouz-v2n",
-            "mlflow.databricks.cluster.info": "{\"cluster_name\":\"\",\"spark_version\":\"16.4.x-photon-scala2.12\",\"autotermination_minutes\":120}",
+            "mlflow.databricks.cluster.id": "0718-063534-idzu3onf-v2n",
+            "mlflow.databricks.cluster.info": "{\"cluster_name\":\"\",\"spark_version\":\"18.x-aarch64-photon-scala2.13\",\"autotermination_minutes\":120}",
             "mlflow.databricks.cluster.libraries": "{\"installable\":[],\"redacted\":[]}",
             "mlflow.note.content": "marvel character prediction demo run",
-            "mlflow.runColor": "#479a5f",
+            "mlflow.runColor": "#7d54b2",
             "mlflow.runName": "marvel-demo-run",
-            "mlflow.source.name": "/Users/mariavechtomova/Marvelous/marvel-characters/.venv/lib/python3.12/site-packages/ipykernel_launcher.py",
+            "mlflow.source.name": "/Users/romain.barraud@bolttech.io/Desktop/Development/Databricks/MLOps with Databricks FREE edition/marvel-characters/.venv/lib/python3.12/site-packages/ipykernel_launcher.py",
             "mlflow.source.type": "LOCAL",
-            "mlflow.user": "maria@marvelousmlops.io"
+            "mlflow.user": "romain.barraud@gmail.com",
+            "mlflow.artifacts.spn": "/WorkspaceInternal/Mlflow/Artifacts/986598991196488/Runs/60abdda8b844474692533151b74b4284/"
         }
     },
     "inputs": {

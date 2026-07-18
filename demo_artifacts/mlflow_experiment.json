@@ -1,14 +1,14 @@
 {
-    "_experiment_id": "3837500115335923",
+    "_experiment_id": "986598991196488",
     "_name": "/Shared/marvel-demo",
-    "_artifact_location": "dbfs:/databricks/mlflow-tracking/3837500115335923",
+    "_artifact_location": "dbfs:/databricks/mlflow-tracking/986598991196488",
     "_lifecycle_stage": "active",
     "_tags": {
-        "mlflow.ownerId": "7047569734437579",
+        "mlflow.ownerId": "8453827566866457",
         "mlflow.experiment.sourceName": "/Shared/marvel-demo",
-        "mlflow.ownerEmail": "maria@marvelousmlops.io",
+        "mlflow.ownerEmail": "romain.barraud@gmail.com",
         "mlflow.experimentType": "MLFLOW_EXPERIMENT"
     },
-    "_creation_time": 1752709929428,
-    "_last_update_time": 1752709929428
+    "_creation_time": 1784356567755,
+    "_last_update_time": 1784356567755
 }

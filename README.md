@@ -6,7 +6,7 @@ In this course, we use Databricks serverless [version 3](https://docs.databricks
 
 In our examples, we use UV. Check out the documentation on how to install it: https://docs.astral.sh/uv/getting-started/installation/
 
-To create a new environment and create a lockfile, run:
+To create a new environment and create a lockfile, run uv:
 
 ```
 uv sync --extra dev

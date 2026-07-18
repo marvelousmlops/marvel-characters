@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %pip install marvelousmlops-marvel-characters-1.0.1-py3-none-any.whl
+# MAGIC %pip install marvel_characters-0.1.0-py3-none-any.whl
 
 # COMMAND ----------
 
