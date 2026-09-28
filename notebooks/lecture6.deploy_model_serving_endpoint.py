@@ -9,7 +9,7 @@ import time
 import os
 import requests
 from pyspark.dbutils import DBUtils
-from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession 
 from mlflow import mlflow
 from databricks.sdk import WorkspaceClient
 from dotenv import load_dotenv
@@ -42,8 +42,35 @@ schema_name = config.schema_name
 # COMMAND ----------
 # Initialize model serving
 model_serving = ModelServing(
-    model_name=f"{catalog_name}.{schema_name}.marvel_character_model_custom", endpoint_name="marvel-character-model-serving"
+    model_name=f"{catalog_name}.{schema_name}.marvel_character_model_custom", 
+    endpoint_name="marvel-characters-model-serving-dev"
 )
+
+# COMMAND ----------
+# Pre-deploy check: latest-model loads, predicts, and ships the Windows-path fix
+import glob
+import zipfile
+
+client = mlflow.MlflowClient()
+latest_version = client.get_model_version_by_alias(model_serving.model_name, "latest-model").version
+print(f"latest-model -> version {latest_version}")
+
+X_sample = spark.table(f"{catalog_name}.{schema_name}.test_set").limit(1).toPandas()[
+    config.num_features + config.cat_features
+]
+loaded_model = mlflow.pyfunc.load_model(f"models:/{model_serving.model_name}@latest-model")
+print(loaded_model.predict(X_sample))
+
+# Windows tolerates backslash paths, so the local load above can't catch the serving bug.
+# Check the wheel packaged with the model (what the serving container installs) has the fix.
+model_dir = mlflow.artifacts.download_artifacts(f"models:/{model_serving.model_name}@latest-model")
+wheel_path = glob.glob(f"{model_dir}/code/*.whl")[0]
+with zipfile.ZipFile(wheel_path) as whl:
+    packaged_source = whl.read("marvel_characters/models/custom_model.py").decode()
+assert 'replace("\\\\", "/")' in packaged_source, (
+    "latest-model was logged without the load_context path fix - run `uv build`, re-run lecture4 custom model, then retry"
+)
+print("Pre-deploy check passed")
 
 # COMMAND ----------
 # Deploy the model serving endpoint
@@ -65,7 +92,7 @@ required_columns = [
     "Mutant"]
 
 
-# Sample 1000 records from the training set
+# Sample 18000 records from the training set
 test_set = spark.table(f"{config.catalog_name}.{config.schema_name}.test_set").toPandas()
 
 # Sample records from the training set
@@ -98,7 +125,7 @@ def call_endpoint(record):
     """
     Calls the model serving endpoint with a given input record.
     """
-    serving_endpoint = f"{os.environ['DBR_HOST']}/serving-endpoints/marvel-character-model-serving/invocations"    
+    serving_endpoint = f"{os.environ['DBR_HOST']}/serving-endpoints/marvel-characters-model-serving-dev/invocations"    
     print(f"Calling endpoint: {serving_endpoint}")
     
     response = requests.post(

@@ -53,10 +53,21 @@ resources:
           depends_on:
             - task_key: "train_model"
 
+        # Second gate: the per-environment deploy_endpoint switch (databricks.yml).
+        # When it is "false" (stage), deploy_model is skipped and the run still succeeds.
+        - task_key: endpoint_enabled
+          condition_task:
+            op: "EQUAL_TO"
+            left: "${var.deploy_endpoint}"
+            right: "true"
+          depends_on:
+            - task_key: "model_updated"
+              outcome: "true"
+
         - task_key: "deploy_model"
           environment_key: default
           depends_on:
-            - task_key: "model_updated"
+            - task_key: "endpoint_enabled"
               outcome: "true"
           spark_python_task:
             python_file: "../scripts/deploy_model.py"

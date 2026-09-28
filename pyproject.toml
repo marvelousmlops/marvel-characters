@@ -87,3 +87,6 @@ lint.ignore = [
 [tool.ruff.format]
 indent-style = "space"
 docstring-code-format = true
+
+[tool.databricks.environment]
+environment_version = "3"

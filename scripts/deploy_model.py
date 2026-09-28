@@ -38,8 +38,9 @@ logger.info("Loaded config file.")
 
 catalog_name = config.catalog_name
 schema_name = config.schema_name
+# One endpoint per environment, so stage/prod never overwrite each other's model. The job's
+# run-as identity (you in dev, stage_spn / prod_spn via CD) creates it on first run and owns it.
 endpoint_name = f"marvel-characters-model-serving-{args.env}"
-endpoint_name = "marvel-character-model-serving"
 
 # Initialize Marvel Model Serving Manager
 model_serving = ModelServing(

@@ -20,6 +20,11 @@ variables:
   schedule_pause_status:
     description: schedule pause status
     default: PAUSED
+  deploy_endpoint:
+    # Switch per environment: should this target create/update a serving endpoint?
+    # The free workspace allows only 2 endpoints, so dev and prod get one and stage does not.
+    description: whether the deployment job deploys the model to a serving endpoint ("true"/"false")
+    default: "true"
 
 
 targets:
@@ -27,24 +32,25 @@ targets:
     default: true
     mode: development
     workspace:
-      host: <your host>
+      host: https://dbc-07d12638-ef42.cloud.databricks.com
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.target}/${bundle.name}
     variables:
       schedule_pause_status: PAUSED
 
-  acc:
+  stage:
     presets:
-      name_prefix: 'acc_'
+      name_prefix: 'stage_'
     workspace:
-      host: <your host>
+      host: https://dbc-07d12638-ef42.cloud.databricks.com
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       schedule_pause_status: PAUSED
+      deploy_endpoint: "false" # free tier: 2 endpoints total (dev + prod); set "true" on a paid workspace
 
-  prd:
+  prod:
     mode: production
     workspace:
-      host: <your host>
+      host: https://dbc-07d12638-ef42.cloud.databricks.com
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       schedule_pause_status: PAUSED # normally UNPAUSED

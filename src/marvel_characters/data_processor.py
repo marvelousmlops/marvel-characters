@@ -41,7 +41,9 @@ class DataProcessor:
         self.df["Universe"] = self.df["Universe"].replace(small_universes, "Other")
 
         # Teams
-        self.df["Teams"] = self.df["Teams"].notna().astype("int")
+        # Explicit int64: with numpy 1.x, "int" is int32 on Windows but int64 on Linux, which
+        # makes locally written and job-written Delta tables disagree (INT vs BIGINT).
+        self.df["Teams"] = self.df["Teams"].notna().astype("int64")
 
         # Origin
         self.df["Origin"] = self.df["Origin"].fillna("Unknown")
@@ -89,7 +91,7 @@ class DataProcessor:
         self.df["Origin"] = self.df["Origin"].apply(normalize_origin)
 
         self.df = self.df[self.df["Alive"].isin(["Alive", "Dead"])]
-        self.df["Alive"] = (self.df["Alive"] == "Alive").astype(int)
+        self.df["Alive"] = (self.df["Alive"] == "Alive").astype("int64")
 
         self.df = self.df[num_features + cat_features + [target] + ["PageID"]]
 
@@ -124,11 +126,12 @@ class DataProcessor:
             "update_timestamp_utc", to_utc_timestamp(current_timestamp(), "UTC")
         )
 
-        train_set_with_timestamp.write.mode("overwrite").saveAsTable(
+        # overwriteSchema: a full overwrite should also replace column types left by earlier writes
+        train_set_with_timestamp.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(
             f"{self.config.catalog_name}.{self.config.schema_name}.train_set"
         )
 
-        test_set_with_timestamp.write.mode("overwrite").saveAsTable(
+        test_set_with_timestamp.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(
             f"{self.config.catalog_name}.{self.config.schema_name}.test_set"
         )
 

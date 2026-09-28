@@ -4,7 +4,8 @@ import json
 
 import mlflow
 from dotenv import load_dotenv
-from pyspark.sql import SparkSession
+#from pyspark.sql import SparkSession
+from databricks.connect import DatabricksSession
 
 from marvel_characters.config import ProjectConfig, Tags
 from marvel_characters.models.basic_model import BasicModel
@@ -27,7 +28,8 @@ if not is_databricks():
 
 
 config = ProjectConfig.from_yaml(config_path="../project_config_marvel.yml", env="dev")
-spark = SparkSession.builder.getOrCreate()
+spark = DatabricksSession.builder.profile("dbc-07d12638-ef42").serverless(True).getOrCreate()
+#spark = SparkSession.builder.getOrCreate()
 tags = Tags(**{"git_sha": "abcd12345", "branch": "main"})
 
 # COMMAND ----------
@@ -93,3 +95,5 @@ print(v[0].__dict__)
 # not supported
 v = mlflow.search_model_versions(
     filter_string="tags.git_sha='abcd12345'")
+
+# COMMAND ----------

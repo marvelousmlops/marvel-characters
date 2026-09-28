@@ -7,15 +7,19 @@ on:
     branches:
         - 'main'
 
+# One CD run at a time; a newer push waits instead of deploying over a running one
+concurrency:
+  group: cd
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
 jobs:
-  deploy:
+  # Stage first. Auth comes from the `stage` GitHub environment (stage_spn).
+  deploy-stage:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [acc, prd]
-    environment: ${{ matrix.environment }}
-    permissions:
-      contents: write # to push tag
+    environment: stage
     env:
       DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
       DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
@@ -25,32 +29,51 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
 
       - name: Install Databricks CLI
-        uses: databricks/setup-cli@49580195afe1ccb06d195764a1d0ae9fabfe2edd #v0.246.0
+        uses: databricks/setup-cli@6a2e75f1f954d87503702c408deea63216c0799d #v1.18.0
         with:
-          version: 0.246.0
-
-      - name: Configure Databricks CLI
-        run: |
-          mkdir -p ~/.databricks
-          cat > ~/.databrickscfg << EOF
-          [marvelous]
-          host = ${{ vars.DATABRICKS_HOST }}
-          client_id = ${{ secrets.DATABRICKS_CLIENT_ID }}
-          client_secret = ${{ secrets.DATABRICKS_CLIENT_SECRET }}
-          EOF
+          version: 1.18.0
 
       - name: Install uv
         uses: astral-sh/setup-uv@0c5e2b8115b80b4c7c5ddf6ffdd634974642d182 #v5.4.1
 
-      - name: Deploy to Databricks
-        env:
-          DATABRICKS_BUNDLE_ENV: ${{ matrix.environment }}
+      - name: Deploy to Databricks (stage)
         run: |
-            databricks bundle deploy \
-              --var="git_sha=${{ github.sha }}" \
-              --var="branch=${{ github.ref_name }}"
-            if [ "${{ matrix.environment }}" = "prd" ]; then
-            echo "VERSION=$(cat version.txt)"
-            git tag $VERSION
-            git push origin $VERSION
-            fi
+          databricks bundle deploy -t stage \
+            --var="git_sha=${{ github.sha }}" \
+            --var="branch=${{ github.ref_name }}"
+
+  # Prod only after stage succeeded; the `prod` environment's required reviewers
+  # pause this job until someone approves. Auth comes from prod_spn.
+  deploy-prod:
+    needs: deploy-stage
+    runs-on: ubuntu-latest
+    environment: prod
+    permissions:
+      contents: write # to push the release tag
+    env:
+      DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
+      DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+      DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+
+      - name: Install Databricks CLI
+        uses: databricks/setup-cli@6a2e75f1f954d87503702c408deea63216c0799d #v1.18.0
+        with:
+          version: 1.18.0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@0c5e2b8115b80b4c7c5ddf6ffdd634974642d182 #v5.4.1
+
+      - name: Deploy to Databricks (prod)
+        run: |
+          databricks bundle deploy -t prod \
+            --var="git_sha=${{ github.sha }}" \
+            --var="branch=${{ github.ref_name }}"
+
+      - name: Tag release
+        run: |
+          VERSION=$(cat version.txt)
+          git tag "$VERSION"
+          git push origin "$VERSION"

@@ -21,7 +21,9 @@ class MarvelModelWrapper(mlflow.pyfunc.PythonModel):
 
     def load_context(self, context: PythonModelContext) -> None:
         """Load the LightGBM model."""
-        self.model = mlflow.sklearn.load_model(context.artifacts["lightgbm-pipeline"])
+        # MLflow records artifact paths with os.path.join, so models logged on Windows
+        # contain backslashes that break loading on Linux serving containers.
+        self.model = mlflow.sklearn.load_model(context.artifacts["lightgbm-pipeline"].replace("\\", "/"))
 
     def predict(self, context: PythonModelContext, model_input: pd.DataFrame | np.ndarray) -> dict:
         """Predict the survival of a character."""

@@ -3,11 +3,11 @@
 
 # COMMAND ----------
 
-# MAGIC %restart_python
+# MAGIC %restart_python  
 
 # COMMAND ----------
 
-import hashlib
+import hashlib 
 import os
 import time
 
@@ -20,7 +20,8 @@ from databricks.sdk.service.serving import (
 )
 from dotenv import load_dotenv
 from mlflow.models import infer_signature
-from pyspark.sql import SparkSession
+#from pyspark.sql import SparkSession
+from databricks.connect import DatabricksSession
 
 from marvel_characters.config import ProjectConfig, Tags
 from marvel_characters.models.basic_model import BasicModel
@@ -29,9 +30,10 @@ from marvel_characters.utils import is_databricks
 # COMMAND ----------
 
 # Set up Databricks or local MLflow tracking
-spark = SparkSession.builder.getOrCreate()
+#spark = SparkSession.builder.getOrCreate()
+spark = DatabricksSession.builder.profile("dbc-07d12638-ef42").serverless(True).getOrCreate()
 
-w = WorkspaceClient()
+w = WorkspaceClient(profile="dbc-07d12638-ef42")  # same workspace as the Spark session above
 
 os.environ["DBR_HOST"] = w.config.host
 os.environ["DBR_TOKEN"] = w.tokens.create(lifetime_seconds=1200).token_value
@@ -63,7 +65,9 @@ model_A_uri = f"models:/{basic_model_a.model_name}@latest-model"
 # COMMAND ----------
 # Train model B (with different hyperparameters or features)
 basic_model_b = BasicModel(config=config, tags=tags, spark=spark)
-basic_model_b.parameters = {"learning_rate": 0.01, "n_estimators": 1000, "max_depth": 6}
+# Model A uses the config params (learning_rate 0.01, n_estimators 1000, max_depth 6);
+# B must differ, otherwise the test compares a model with itself
+basic_model_b.parameters = {"learning_rate": 0.05, "n_estimators": 300, "max_depth": 3}
 basic_model_b.model_name = f"{catalog_name}.{schema_name}.marvel_character_model_basic_B"
 basic_model_b.load_data()
 basic_model_b.prepare_features()
@@ -76,11 +80,13 @@ model_B_uri = f"models:/{basic_model_b.model_name}@latest-model"
 # Define A/B test wrapper
 class MarvelModelWrapper(mlflow.pyfunc.PythonModel):
     def load_context(self, context):
+        # MLflow records artifact paths with os.path.join, so models logged on Windows
+        # contain backslashes that break loading on Linux serving containers.
         self.model_a = mlflow.sklearn.load_model(
-            context.artifacts["sklearn-pipeline-model-A"]
+            context.artifacts["sklearn-pipeline-model-A"].replace("\\", "/")
         )
         self.model_b = mlflow.sklearn.load_model(
-            context.artifacts["sklearn-pipeline-model-B"]
+            context.artifacts["sklearn-pipeline-model-B"].replace("\\", "/")
         )
 
     def predict(self, context, model_input):
@@ -126,7 +132,7 @@ model_version = mlflow.register_model(
 
 # COMMAND ----------
 # Model serving setup
-workspace = WorkspaceClient()
+workspace = w  # reuse the profile-pinned client so the endpoint lands in the same workspace
 endpoint_name = "marvel-characters-ab-testing"
 entity_version = model_version.version
 
@@ -161,11 +167,13 @@ print(dataframe_records[0])
 # Call the endpoint with one sample record
 def call_endpoint(record):
     """Calls the model serving endpoint with a given input record."""
-    serving_endpoint = f"{os.environ['DBR_HOST']}/serving-endpoints/marvel-characters-ab-testing/invocations"
+    serving_endpoint = f"{w.config.host}/serving-endpoints/marvel-characters-ab-testing/invocations"
 
+    # Fresh auth header per call: the DBR_TOKEN minted at the top expires after 20 minutes,
+    # which training both models and waiting for the endpoint usually exceeds
     response = requests.post(
         serving_endpoint,
-        headers={"Authorization": f"Bearer {os.environ['DBR_TOKEN']}"},
+        headers=w.config.authenticate(),
         json={"dataframe_records": record},
     )
     return response.status_code, response.text

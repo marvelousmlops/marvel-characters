@@ -1,13 +1,14 @@
 # Databricks notebook source
 
 import mlflow
-from pyspark.sql import SparkSession
-
+#from pyspark.sql import SparkSession
+from databricks.connect import DatabricksSession
 from marvel_characters.config import ProjectConfig, Tags
 from marvel_characters.models.custom_model import MarvelModelWrapper
 from importlib.metadata import version
 from dotenv import load_dotenv
 from mlflow import MlflowClient
+
 import os
 
 # Set up Databricks or local MLflow tracking
@@ -26,20 +27,21 @@ if not is_databricks():
 
 
 config = ProjectConfig.from_yaml(config_path="../project_config_marvel.yml", env="dev")
-spark = SparkSession.builder.getOrCreate()
+#spark = SparkSession.builder.getOrCreate()
+spark = DatabricksSession.builder.profile("dbc-07d12638-ef42").serverless(True).getOrCreate()
 tags = Tags(**{"git_sha": "abcd12345", "branch": "main"})
 marvel_characters_v = version("marvel_characters")
 
 code_paths=[f"../dist/marvel_characters-{marvel_characters_v}-py3-none-any.whl"]
 
-# COMMAND ----------
+# COMMAND ---------- search for the latest model version using alias
 client = MlflowClient()
 wrapped_model_version = client.get_model_version_by_alias(
     name=f"{config.catalog_name}.{config.schema_name}.marvel_character_model_basic",
     alias="latest-model")
 # Initialize model with the config path
 
-# COMMAND ----------
+# COMMAND ---------- 
 test_set = spark.table(f"{config.catalog_name}.{config.schema_name}.test_set").toPandas()
 X_test = test_set[config.num_features + config.cat_features]
 

@@ -15,6 +15,7 @@ from delta.tables import DeltaTable
 from lightgbm import LGBMClassifier
 from loguru import logger
 from mlflow import MlflowClient
+from mlflow.exceptions import MlflowException
 from mlflow.models import infer_signature
 from pyspark.sql import SparkSession
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -77,8 +78,8 @@ class BasicModel:
     def prepare_features(self) -> None:
         """Encode categorical features and define a preprocessing pipeline.
 
-        Creates a ColumnTransformer for one-hot encoding categorical features while passing through numerical
-        features. Constructs a pipeline combining preprocessing and LightGBM classification model.
+        Creates a ColumnTransformer that encodes categorical features as integer category codes while passing
+        through numerical features. Constructs a pipeline combining preprocessing and LightGBM classification model.
         """
         logger.info("🔄 Defining preprocessing pipeline...")
 
@@ -93,7 +94,7 @@ class BasicModel:
                 self.cat_features = cat_features
                 self.cat_maps_ = {}
 
-            def fit(self, X: pd.DataFrame, y: pd.Series | None = None) -> None:
+            def fit(self, X: pd.DataFrame, y: pd.Series | None = None) -> "CatToIntTransformer":
                 """Fit the transformer to the DataFrame X."""
                 self.fit_transform(X)
                 return self
@@ -119,7 +120,7 @@ class BasicModel:
             transformers=[("cat", CatToIntTransformer(self.cat_features), self.cat_features)], remainder="passthrough"
         )
         self.pipeline = Pipeline(
-            steps=[("preprocessor", preprocessor), ("regressor", LGBMClassifier(**self.parameters))]
+            steps=[("preprocessor", preprocessor), ("classifier", LGBMClassifier(**self.parameters))]
         )
         logger.info("✅ Preprocessing pipeline defined.")
 
@@ -169,10 +170,17 @@ class BasicModel:
         """Evaluate the model performance on the test set.
 
         Compares the current model with the latest registered model using F1-score.
-        :return: True if the current model performs better, False otherwise.
+        :return: True if the current model performs better (or no model is registered yet), False otherwise.
         """
         client = MlflowClient()
-        latest_model_version = client.get_model_version_by_alias(name=self.model_name, alias="latest-model")
+        try:
+            latest_model_version = client.get_model_version_by_alias(name=self.model_name, alias="latest-model")
+        except MlflowException as e:
+            # First run in a fresh environment (e.g. stage/prod): nothing registered yet, so nothing to beat.
+            if e.error_code == "RESOURCE_DOES_NOT_EXIST":
+                logger.info(f"No '{self.model_name}@latest-model' registered yet. Treating current model as improved.")
+                return True
+            raise
         latest_model_uri = f"models:/{latest_model_version.model_id}"
 
         result = mlflow.models.evaluate(

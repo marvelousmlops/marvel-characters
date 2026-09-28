@@ -1,8 +1,8 @@
-prd:
-  catalog_name: mlops_prd
+prod:
+  catalog_name: mlops_prod
   schema_name: marvel_characters
-acc:
-  catalog_name: mlops_acc
+stage:
+  catalog_name: mlops_stage
   schema_name: marvel_characters
 dev:
   catalog_name: mlops_dev

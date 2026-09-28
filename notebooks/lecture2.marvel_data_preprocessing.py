@@ -12,7 +12,7 @@
 import pandas as pd
 import yaml
 from loguru import logger
-from pyspark.sql import SparkSession
+from databricks.connect import DatabricksSession
 
 from marvel_characters.config import ProjectConfig
 from marvel_characters.data_processor import DataProcessor
@@ -25,7 +25,7 @@ logger.info(yaml.dump(config, default_flow_style=False))
 # COMMAND ----------
 
 # Load the Marvel characters dataset
-spark = SparkSession.builder.getOrCreate()
+spark = DatabricksSession.builder.profile("dbc-07d12638-ef42").serverless(True).getOrCreate()
 
 filepath = "../data/marvel_characters_dataset.csv"
 
@@ -52,8 +52,8 @@ logger.info(f"Data preprocessing completed.")
 
 # Split the data
 X_train, X_test = data_processor.split_data()
-logger.info("Training set shape: %s", X_train.shape)
-logger.info("Test set shape: %s", X_test.shape)
+logger.info(f"Training set shape: {X_train.shape}")
+logger.info(f"Test set shape: {X_test.shape}")
 
 # COMMAND ----------
 # Save to catalog

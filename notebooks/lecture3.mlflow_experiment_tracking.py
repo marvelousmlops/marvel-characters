@@ -22,11 +22,12 @@ if not is_databricks():
     mlflow.set_registry_uri(f"databricks-uc://{profile}")
 
 mlflow.get_tracking_uri()
+
 # COMMAND ----------
 experiment = mlflow.set_experiment(experiment_name="/Shared/marvel-demo")
 mlflow.set_experiment_tags({"repository_name": "marvelousmlops/marvel-characters"})
-
 print(experiment)
+
 # COMMAND ----------
 # dump class attributes in a json file for visualization
 os.makedirs("../demo_artifacts", exist_ok=True)
@@ -65,6 +66,7 @@ with mlflow.start_run(
     run_id = run.info.run_id
     mlflow.log_params({"type": "marvel_demo"})
     mlflow.log_metrics({"metric1": 1.0, "metric2": 2.0})
+    
 # COMMAND ----------
 print(mlflow.active_run() is None)
 
